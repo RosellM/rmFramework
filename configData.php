@@ -10,7 +10,7 @@ class configData
 private  $user="root";
 private  $pass=""; 
 private  $db="grid";
-private  $direccion="192.168.1.68:3606";
+private  $direccion="localhost";
 private  $conexion;
 
 	function __construct()

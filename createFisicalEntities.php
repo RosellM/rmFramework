@@ -30,7 +30,7 @@ CREAR ARCHIVO POR CADA CLASE
 		foreach ($fieldsArray as $key) {
 			$this->createClassFile($key);
 		}
-		$file = fopen("rmEntities/".$this->ClassName.".php","a+");
+		$file = fopen("rmEntities/".$this->ClassName.".class.php","a+");
 
 		foreach ($this->ClassParam as $key) {
 			///
@@ -48,9 +48,9 @@ CREAR ARCHIVO POR CADA CLASE
 	{
 		if($this->creado == FALSE){
 
-			$miarchivo=fopen("rmEntities/".$this->ClassName.'.php','w');//abrir archivo, nombre archivo, modo apertura
-			echo "##Tu archivo se ha guardado con el nombre \"$this->ClassName.php\" \n";
-			$file = fopen("rmEntities/".$this->ClassName.".php","w");
+			$miarchivo=fopen("rmEntities/".$this->ClassName.'.class.php','w');//abrir archivo, nombre archivo, modo apertura
+			echo "##Tu archivo se ha guardado con el nombre \"$this->ClassName.class.php\" \n";
+			$file = fopen("rmEntities/".$this->ClassName.".class.php","w");
 			fputs($file,"<?php\n class  ".$this->ClassName." \n{ \n");
 			fclose($miarchivo); //cerrar archivo
 			$this->creado = TRUE;
@@ -59,7 +59,7 @@ CREAR ARCHIVO POR CADA CLASE
 		{
 			echo $Attttr."\n";
 			array_push ( $this->ClassParam , $Attttr );
-			$file = fopen("rmEntities/".$this->ClassName.".php","a+");
+			$file = fopen("rmEntities/".$this->ClassName.".class.php","a+");
 			fputs($file,"\npublic $".$Attttr.";");
 			fputs($file,"\npublic function set".$Attttr."($".$Attttr."){".$this->auxC."".$Attttr." = $".$Attttr." }\n");
 			fputs($file,"\npublic function get".$Attttr."(){return ".$this->auxC."".$Attttr." }\n\n");
