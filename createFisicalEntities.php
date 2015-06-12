@@ -59,10 +59,11 @@ CREAR ARCHIVO POR CADA CLASE
 		{
 			echo $Attttr."\n";
 			array_push ( $this->ClassParam , $Attttr );
-			$file = fopen("rmEntities/".$this->ClassName.".class.php","a+");
+			$file = fopen("rmEntities/".$this->ClassName.".php","a+");
 			fputs($file,"\npublic $".$Attttr.";");
-			fputs($file,"\npublic function set".$Attttr."($".$Attttr."){".$this->auxC."".$Attttr." = $".$Attttr." }\n");
-			fputs($file,"\npublic function get".$Attttr."(){return ".$this->auxC."".$Attttr." }\n\n");
+
+			fputs($file,"\npublic function set". strtoupper( $Attttr )."($".$Attttr."){".$this->auxC."".$Attttr." = $".$Attttr." }\n");
+			fputs($file,"\npublic function get". strtoupper( $Attttr )."(){return ".$this->auxC."".$Attttr." }\n\n");
 
  			fclose($file);
 		}
