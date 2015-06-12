@@ -9,7 +9,6 @@ include("configData.php");
 if(count($argv)>2){
 echo "Error en la entrada,\n comando requerido CREATE";
 return;
-
 }
 
 switch ($argv[1]) {
@@ -24,8 +23,6 @@ switch ($argv[1]) {
 	
 	case 'CREATE-TEMPORAL-VIEWS':
 		echo $argv[1];
-		
-	
 		echo "CONEXION SELECCIONADA .......... OK!\n";
 		$v = new viewsTemplate();
 		echo "CREANDO VISTAS TEMPORALES...OK \n";

@@ -9,8 +9,8 @@ class configData
 
 private  $user="root";
 private  $pass=""; 
-private  $db="upch";
-private  $direccion="localhost:3306";
+private  $db="grid";
+private  $direccion="192.168.1.68:3606";
 private  $conexion;
 
 	function __construct()

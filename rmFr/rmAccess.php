@@ -27,17 +27,20 @@ class rmAccess extends Data
 			array_push ( $ArraySQLValues , $AttrValue );
 		}
 	echo $tableName."\n";	
+	
+	$connection = parent::connectDB() ;
+	
 	$columnNames =  implode(",",$ArraySQL)."\n";
 	$values =  "'".implode("','",$ArraySQLValues)."'";
 	$INSERT_COMPLETE = "INSERT INTO ".$tableName." (".$columnNames.") VALUES (".$values.")";
 	echo $INSERT_COMPLETE;
-	$retval  = 	 mysql_query( $INSERT_COMPLETE, parent::connectDB() );
+	$retval  = 	 mysql_query( $INSERT_COMPLETE, $connection);
 		if(! $retval ){
   				die('Could not enter data: ' . mysql_error());
 		}
 		
 		echo "Entered data successfully\n";
-    	mysql_close( parent::connectDB() );	
+    	mysql_close( $connection );	
 	}
 	
 	public function deleteEntity($identifier,$tableName)
@@ -46,17 +49,20 @@ class rmAccess extends Data
 		 * $sql = 'DELETE FROM tutorials_tbl
        		/**WHERE tutorial_id=3';
 		 */
+		 
+		 $connection = parent::connectDB() ;
+		 
 		 $sql = "DELETE FROM ".$tableName." WHERE id = ".$identifier;
 		 echo $sql;
-		 $retval = mysql_query( $sql, parent::connectDB()  );
+		 $retval = mysql_query( $sql, $connection );
 	     if(! $retval ){
   				die('Could not deleted data: ' . mysql_error());
 		 }
 		echo "deleted data successfully\n";
-		mysql_close(parent::connectDB() ); 
+		mysql_close( $connection ); 
 		 
 	}
-	/*option = 1, si es para guardar, option = 1 para actualizar*/
+	/*option = 0, si es para guardar, option = 1 para actualizar*/
 	public function saveOrUpdate($entity,$option,$id)
 	{
 		switch ($option) {
@@ -74,6 +80,7 @@ class rmAccess extends Data
 	
 	public function updateEntity($entity,$id)
 	{
+		$connection = parent::connectDB() ;
 		$aux = 0;
 		$valuesToUpdate=" ";
 		$tableName =  get_class($entity);
@@ -91,12 +98,12 @@ class rmAccess extends Data
 		}
 		 $sql = "UPDATE ".$tableName." SET ".$valuesToUpdate." WHERE id = ".$id;
 		 echo $sql;
-		 $retval = mysql_query( $sql, parent::connectDB()  );
+		 $retval = mysql_query( $sql, $connection   );
 	     if(! $retval ){
   				die('Could not update data: ' . mysql_error());
 		 }
 		echo "updated data successfully\n";
-		mysql_close(parent::connectDB() ); 
+		mysql_close( $connection ); 
 		
 	 }
 }
